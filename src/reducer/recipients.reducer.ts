@@ -28,7 +28,7 @@ function reducer(state: IInitialState, action: IAction) {
 		}
 	
 		default:
-			return state;
+      return state;
 	}
 };
 
