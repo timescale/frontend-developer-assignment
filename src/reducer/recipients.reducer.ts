@@ -20,15 +20,15 @@ function reducer(state: IInitialState, action: IAction) {
 				...state,
 			};
 		}
-		
+
 		case DispatchTypeEnum.REMOVE_RECIPIENT: {
 			return {
 				...state,
 			}
 		}
-	
+
 		default:
-      return state;
+			return state;
 	}
 };
 
