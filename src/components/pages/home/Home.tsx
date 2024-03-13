@@ -32,7 +32,7 @@ const Home = () => {
         );
 
         companyRecipients.push({
-          id: index + 1, // todo: should use an actual ID
+          id: index + 1,
           domainName: domain,
           recipients: matchingRecipients,
         });

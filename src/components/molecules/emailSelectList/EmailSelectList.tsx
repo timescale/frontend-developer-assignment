@@ -67,13 +67,10 @@ const EmailSelectList = ({
     setCompanyRecipients(updatedCompanies);
   };
 
-  console.log("accordion", accordionIndex);
-
   return (
     <Box sx={{ border: "1px solid black" }}>
       <Accordion index={accordionIndex}>
         {companyRecipients.map((company, companyIndex) => (
-          // todo: ideally, these map would use a unique ID and not an index
           <AccordionItem key={companyIndex}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <IconButton variant={""} aria-label={"accordion-button"}>

@@ -48,7 +48,6 @@ export const Autocomplete = ({
         error={error}
       />
 
-      {/* todo: ideally, list items would not use an index for key */}
       {!error && (
         <Box sx={{ position: "absolute", bottom: "-4px" }}>
           <Menu isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
