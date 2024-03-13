@@ -99,56 +99,62 @@ const SelectedRecipientList = ({
       </StyledAccordionItem>
       <Accordion index={accordionIndex}>
         {showCompanyRecipients &&
-          companyRecipients.map((company, companyIndex) => (
-            <AccordionItem key={companyIndex}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginLeft: "1rem",
-                }}
-              >
-                <IconButton variant={""} aria-label={"accordion-button"}>
-                  <AccordionIcon
-                    color={"gray.600"}
-                    onClick={() => handleAccordionClick(companyIndex)}
-                  />
-                </IconButton>
-                <AccordionButton
-                  data-cy={`${company.domainName}-selected`}
-                  onClick={() => handleCompanyRecipientClick(company)}
+          companyRecipients
+            .filter((company) =>
+              company.recipients.some(
+                (recipient) => recipient.isSelected === true,
+              ),
+            )
+            .map((company, companyIndex) => (
+              <AccordionItem key={companyIndex}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginLeft: "1rem",
+                  }}
                 >
-                  <Text>{company.domainName}</Text>
-                </AccordionButton>
-              </Box>
-              <AccordionPanel
-                pb={4}
-                sx={{ display: "flex", flexDirection: "column" }}
-              >
-                {company.recipients
-                  .filter((recipient) => recipient.isSelected === true)
-                  .map((recipient, index) => (
-                    <StyledAccordionItem
-                      key={index}
-                      variant="ghost"
-                      sx={{
-                        width: "calc(100%)",
-                        marginLeft: "40px",
-                      }}
-                      data-cy={`${recipient.email}-selected`}
-                      onClick={() =>
-                        handleCompanyIndividualRecipientClick(
-                          company,
-                          recipient,
-                        )
-                      }
-                    >
-                      {recipient.isSelected === true && recipient.email}
-                    </StyledAccordionItem>
-                  ))}
-              </AccordionPanel>
-            </AccordionItem>
-          ))}
+                  <IconButton variant={""} aria-label={"accordion-button"}>
+                    <AccordionIcon
+                      color={"gray.600"}
+                      onClick={() => handleAccordionClick(companyIndex)}
+                    />
+                  </IconButton>
+                  <AccordionButton
+                    data-cy={`${company.domainName}-selected`}
+                    onClick={() => handleCompanyRecipientClick(company)}
+                  >
+                    <Text>{company.domainName}</Text>
+                  </AccordionButton>
+                </Box>
+                <AccordionPanel
+                  pb={4}
+                  sx={{ display: "flex", flexDirection: "column" }}
+                >
+                  {company.recipients
+                    .filter((recipient) => recipient.isSelected === true)
+                    .map((recipient, index) => (
+                      <StyledAccordionItem
+                        key={index}
+                        variant="ghost"
+                        sx={{
+                          width: "calc(100%)",
+                          marginLeft: "40px",
+                        }}
+                        data-cy={`${recipient.email}-selected`}
+                        onClick={() =>
+                          handleCompanyIndividualRecipientClick(
+                            company,
+                            recipient,
+                          )
+                        }
+                      >
+                        {recipient.isSelected === true && recipient.email}
+                      </StyledAccordionItem>
+                    ))}
+                </AccordionPanel>
+              </AccordionItem>
+            ))}
         <StyledAccordionItem
           size={"xl"}
           sx={{ width: "100%" }}
