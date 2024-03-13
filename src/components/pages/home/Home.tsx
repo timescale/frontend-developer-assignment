@@ -3,11 +3,12 @@ import DefaultPageLayout from "../../organisms/defaultPageLayout/DefaultPageLayo
 import CardWithLabel from "../../atoms/cardWithLabel/CardWithLabel";
 import { HomeContainer } from "./styles";
 import { useGetRecipientsQuery } from "../../../api/RecipientsApi";
-import EmailSelectList from "../../molecules/emailSelectList/EmailSelectList";
+import AvailableRecipientList from "../../molecules/availableRecipientList/AvailableRecipientList";
 import { IndividualRecipient } from "../../../models/IndividualRecipient";
 import { CompanyRecipient } from "../../../models/CompanyRecipient";
 import Autocomplete from "../../molecules/autocomplete/Autocomplete";
 import { Box } from "@chakra-ui/react";
+import SelectedRecipientList from "../../molecules/selectedRecipientList/SelectedRecipientList";
 
 const Home = () => {
   const recipientData: IndividualRecipient[] = useGetRecipientsQuery();
@@ -107,23 +108,21 @@ const Home = () => {
               marginY: "calc(4rem - 40px)",
             }}
           />
-          <EmailSelectList
+          <AvailableRecipientList
             companyRecipients={companyRecipients}
             individualRecipients={individualRecipients}
             setCompanyRecipients={setCompanyRecipients}
             setIndividualRecipients={setIndividualRecipients}
-            polarity={false}
           />
         </CardWithLabel>
 
         <CardWithLabel label="Selected recipients">
           <Box mt={"4rem"} />
-          <EmailSelectList
+          <SelectedRecipientList
             companyRecipients={companyRecipients}
             individualRecipients={individualRecipients}
             setCompanyRecipients={setCompanyRecipients}
             setIndividualRecipients={setIndividualRecipients}
-            polarity={true}
           />
         </CardWithLabel>
       </HomeContainer>

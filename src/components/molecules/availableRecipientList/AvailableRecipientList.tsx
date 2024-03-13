@@ -6,7 +6,6 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
-  Button,
   IconButton,
   Text,
 } from "@chakra-ui/react";
@@ -14,21 +13,19 @@ import { CompanyRecipient } from "../../../models/CompanyRecipient";
 import { IndividualRecipient } from "../../../models/IndividualRecipient";
 import { StyledAccordionItem } from "./styles";
 
-interface SelectListProps {
+interface AvailableRecipientListProps {
   companyRecipients: CompanyRecipient[];
   individualRecipients: IndividualRecipient[];
   setCompanyRecipients: (companies: CompanyRecipient[]) => void;
   setIndividualRecipients: (recipients: IndividualRecipient[]) => void;
-  polarity: boolean;
 }
 
-const EmailSelectList = ({
+const AvailableRecipientList = ({
   companyRecipients,
   individualRecipients,
   setCompanyRecipients,
   setIndividualRecipients,
-  polarity,
-}: SelectListProps) => {
+}: AvailableRecipientListProps) => {
   const [accordionIndex, setAccordionIndex] = useState<number>(-1);
 
   const handleIndividualRecipientClick = (recipient: IndividualRecipient) => {
@@ -45,7 +42,7 @@ const EmailSelectList = ({
     const updateIndex = updatedCompanies.indexOf(company);
     updatedCompanies[updateIndex]?.recipients?.map((recipient) => {
       const updatedRecipient = recipient;
-      updatedRecipient.isSelected = !polarity;
+      updatedRecipient.isSelected = true;
       return updatedRecipient;
     });
     setCompanyRecipients(updatedCompanies);
@@ -62,9 +59,14 @@ const EmailSelectList = ({
 
     updatedCompanies[updateCompanyIndex].recipients[
       updateRecipientIndex
-    ].isSelected = !polarity;
+    ].isSelected = true;
 
     setCompanyRecipients(updatedCompanies);
+  };
+
+  const handleAccordionClick = (index: number) => {
+    if (accordionIndex === index) setAccordionIndex(-1);
+    else setAccordionIndex(index);
   };
 
   return (
@@ -75,7 +77,7 @@ const EmailSelectList = ({
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <IconButton variant={""} aria-label={"accordion-button"}>
                 <AccordionIcon
-                  onClick={() => setAccordionIndex(companyIndex)}
+                  onClick={() => handleAccordionClick(companyIndex)}
                 />
               </IconButton>
               <AccordionButton
@@ -91,38 +93,40 @@ const EmailSelectList = ({
               sx={{ display: "flex", flexDirection: "column" }}
             >
               {company.recipients
-                .filter((recipient) => recipient.isSelected === polarity)
+                .filter((recipient) => recipient.isSelected === false)
                 .map((recipient, index) => (
                   <StyledAccordionItem
+                    key={index}
                     variant="ghost"
                     sx={{
                       width: "calc(100%)",
                       marginLeft: "40px",
                     }}
-                    data-cy={`${recipient.email}-${polarity ? "selected" : "not-selected"}`}
+                    data-cy={`${recipient.email}-not-selected`}
                     onClick={() =>
                       handleCompanyIndividualRecipientClick(company, recipient)
                     }
                   >
-                    {recipient.isSelected === polarity && recipient.email}
+                    {recipient.isSelected === false && recipient.email}
                   </StyledAccordionItem>
                 ))}
             </AccordionPanel>
           </AccordionItem>
         ))}
         {individualRecipients
-          .filter((recipient) => recipient.isSelected === polarity)
+          .filter((recipient) => recipient.isSelected === false)
           .map((individual, index) => (
             <StyledAccordionItem
+              key={index}
               sx={{
                 width: "calc(100% - 40px)",
                 marginLeft: "40px",
               }}
               variant="ghost"
               onClick={() => handleIndividualRecipientClick(individual)}
-              data-cy={`${individual.email}_${polarity ? "selected" : "not_selected"}`}
+              data-cy={`${individual.email}_$not_selected`}
             >
-              {individual.isSelected === polarity && individual.email}
+              {individual.isSelected === false && individual.email}
             </StyledAccordionItem>
           ))}
       </Accordion>
@@ -130,4 +134,4 @@ const EmailSelectList = ({
   );
 };
 
-export default EmailSelectList;
+export default AvailableRecipientList;
