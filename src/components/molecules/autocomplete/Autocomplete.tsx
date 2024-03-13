@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "../../atoms/searchBar/SearchBar";
 import { Box, Menu, MenuItem, MenuList, useDisclosure } from "@chakra-ui/react";
 
