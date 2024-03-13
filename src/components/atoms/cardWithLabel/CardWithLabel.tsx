@@ -11,7 +11,7 @@ const CardWithLabel = ({ children, label }: CardWithLabelProps) => {
     <Card sx={{ minWidth: "600px", minHeight: "400px", padding: "2rem" }}>
       <Box
         sx={{
-          border: "1px solid black",
+          border: "1px solid #BDBDBD",
           borderRadius: "4px",
           position: "relative",
           height: "100%",
@@ -19,6 +19,7 @@ const CardWithLabel = ({ children, label }: CardWithLabelProps) => {
         }}
       >
         <Heading
+          color={"gray.600"}
           as="h6"
           size="md"
           sx={{

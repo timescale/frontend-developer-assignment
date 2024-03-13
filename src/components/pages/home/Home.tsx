@@ -122,7 +122,7 @@ const Home = () => {
         </CardWithLabel>
 
         <CardWithLabel label="Selected recipients">
-          <Box mt={"4rem"} />
+          <Box mt={"1rem"} />
           <SelectedRecipientList
             companyRecipients={companyRecipients}
             individualRecipients={individualRecipients}

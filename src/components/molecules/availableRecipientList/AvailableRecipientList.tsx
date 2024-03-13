@@ -70,13 +70,14 @@ const AvailableRecipientList = ({
   };
 
   return (
-    <Box sx={{ border: "1px solid black" }}>
+    <Box>
       <Accordion index={accordionIndex}>
         {companyRecipients.map((company, companyIndex) => (
           <AccordionItem key={companyIndex}>
             <Box sx={{ display: "flex", alignItems: "center" }}>
               <IconButton variant={""} aria-label={"accordion-button"}>
                 <AccordionIcon
+                  color={"gray.600"}
                   onClick={() => handleAccordionClick(companyIndex)}
                 />
               </IconButton>

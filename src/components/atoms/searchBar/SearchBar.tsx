@@ -28,12 +28,12 @@ const SearchBar = ({
       onFocus={onFocus}
     >
       <InputLeftElement pointerEvents="none">
-        <SearchIcon />
+        <SearchIcon color={"gray.600"} />
       </InputLeftElement>
       <Input
         id={"search-bar"}
         data-cy={"search-bar"}
-        sx={{ borderColor: "black", borderRadius: "2rem" }}
+        sx={{ borderColor: "#BDBDBD", borderRadius: "2rem" }}
         type="email"
         placeholder="search"
         value={value}

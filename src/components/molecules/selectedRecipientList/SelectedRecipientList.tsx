@@ -75,16 +75,22 @@ const SelectedRecipientList = ({
   };
 
   return (
-    <Box sx={{ border: "1px solid black" }}>
+    <Box>
       <StyledAccordionItem
         size={"xl"}
         sx={{ width: "100%" }}
         variant={"ghost"}
         leftIcon={
           !showCompanyRecipients ? (
-            <ChevronDownIcon sx={{ height: "1.5rem", width: "1.5rem" }} />
+            <ChevronDownIcon
+              color={"gray.600"}
+              sx={{ height: "1.5rem", width: "1.5rem" }}
+            />
           ) : (
-            <ChevronUpIcon sx={{ height: "1.5rem", width: "1.5rem" }} />
+            <ChevronUpIcon
+              color={"gray.600"}
+              sx={{ height: "1.5rem", width: "1.5rem" }}
+            />
           )
         }
         onClick={() => setShowCompanyRecipients(!showCompanyRecipients)}
@@ -104,6 +110,7 @@ const SelectedRecipientList = ({
               >
                 <IconButton variant={""} aria-label={"accordion-button"}>
                   <AccordionIcon
+                    color={"gray.600"}
                     onClick={() => handleAccordionClick(companyIndex)}
                   />
                 </IconButton>
@@ -148,9 +155,15 @@ const SelectedRecipientList = ({
           variant={"ghost"}
           leftIcon={
             !showIndividualRecipients ? (
-              <ChevronDownIcon sx={{ height: "1.5rem", width: "1.5rem" }} />
+              <ChevronDownIcon
+                color={"gray.600"}
+                sx={{ height: "1.5rem", width: "1.5rem" }}
+              />
             ) : (
-              <ChevronUpIcon sx={{ height: "1.5rem", width: "1.5rem" }} />
+              <ChevronUpIcon
+                color={"gray.600"}
+                sx={{ height: "1.5rem", width: "1.5rem" }}
+              />
             )
           }
           onClick={() => setShowIndividualRecipients(!showIndividualRecipients)}
