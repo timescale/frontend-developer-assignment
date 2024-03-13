@@ -47,22 +47,15 @@ export const Autocomplete = ({
         handleEnterPress={onEnterKeyPress}
         error={error}
       />
-
-      {!error && (
+      {!error && !!dropdownItems.length && (
         <Box sx={{ position: "absolute", bottom: "-4px" }}>
           <Menu isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
             <MenuList>
-              {dropdownItems
-                .filter((item) => item.includes(searchValue))
-                .map((item, index) => (
-                  <MenuItem key={index} onClick={() => handleItemClick(item)}>
-                    {item}
-                  </MenuItem>
-                ))}
-              {dropdownItems.filter((item) => item.includes(searchValue))
-                .length === 0 && (
-                <MenuItem pointerEvents={"none"}>No emails found.</MenuItem>
-              )}
+              {dropdownItems.map((item, index) => (
+                <MenuItem key={index} onClick={() => handleItemClick(item)}>
+                  {item}
+                </MenuItem>
+              ))}
             </MenuList>
           </Menu>
         </Box>

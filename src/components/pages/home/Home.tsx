@@ -87,7 +87,7 @@ const Home = () => {
   const handleCreateEmail = (email: string) =>
     setRecipientList((prevState) => [
       ...prevState,
-      { email, isSelected: true },
+      { email, isSelected: false },
     ]);
 
   return (
@@ -97,8 +97,12 @@ const Home = () => {
           <Autocomplete
             searchValue={searchValue}
             setSearchValue={setSearchValue}
-            dropdownItems={recipientData
-              ?.filter((recipient) => !recipient.isSelected)
+            dropdownItems={recipientList
+              ?.filter(
+                (recipient) =>
+                  !recipient.isSelected &&
+                  recipient.email.includes(searchValue),
+              )
               .map((recipient) => recipient.email)}
             handleItemClick={handleAutocompleteItemClick}
             handleEnterPress={handleCreateEmail}

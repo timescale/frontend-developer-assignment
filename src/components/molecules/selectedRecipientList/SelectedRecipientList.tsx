@@ -29,9 +29,9 @@ const SelectedRecipientList = ({
 }: SelectedRecipientListProps) => {
   const [accordionIndex, setAccordionIndex] = useState<number>(-1);
   const [showCompanyRecipients, setShowCompanyRecipients] =
-    useState<boolean>(false);
+    useState<boolean>(true);
   const [showIndividualRecipients, setShowIndividualRecipients] =
-    useState<boolean>(false);
+    useState<boolean>(true);
 
   const handleIndividualRecipientClick = (recipient: IndividualRecipient) => {
     const updatedRecipientList = [...individualRecipients];

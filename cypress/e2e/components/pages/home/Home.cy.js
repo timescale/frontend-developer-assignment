@@ -6,7 +6,7 @@ describe("home page", () => {
   it("creates a new email", () => {
     const mockEmail = "mockEmail@gmail.com";
     cy.get('[data-cy="search-bar"]').type(mockEmail).type("{enter}");
-    cy.get(`[data-cy="${mockEmail}_selected"]`).should("exist");
+    cy.get(`[data-cy="${mockEmail}-selected"]`).should("exist");
   });
 
   it("moves individual recipient to selected recipients when clicked", () => {
