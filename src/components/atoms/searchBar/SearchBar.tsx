@@ -22,7 +22,6 @@ const SearchBar = ({
       sx={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
         maxWidth: "20rem",
       }}
       onFocus={onFocus}
@@ -46,7 +45,7 @@ const SearchBar = ({
         }}
       />
       {error !== "" && (
-        <Text color={"#eb6161"} mt={1} fontSize="xs">
+        <Text color={"#eb6161"} mt={1} ml={2} fontSize="xs">
           {error}
         </Text>
       )}
