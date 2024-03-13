@@ -108,11 +108,10 @@ const SelectedRecipientList = ({
                   />
                 </IconButton>
                 <AccordionButton
+                  data-cy={`${company.domainName}-selected`}
                   onClick={() => handleCompanyRecipientClick(company)}
                 >
-                  <Text key={companyIndex} data-cy={company.domainName}>
-                    {company.domainName}
-                  </Text>
+                  <Text>{company.domainName}</Text>
                 </AccordionButton>
               </Box>
               <AccordionPanel
@@ -170,7 +169,7 @@ const SelectedRecipientList = ({
                 }}
                 variant="ghost"
                 onClick={() => handleIndividualRecipientClick(individual)}
-                data-cy={`${individual.email}_selected`}
+                data-cy={`${individual.email}-selected`}
               >
                 {individual.isSelected === true && individual.email}
               </StyledAccordionItem>

@@ -23,54 +23,55 @@ const Home = () => {
     IndividualRecipient[]
   >([]);
 
-  const setGroupedRecipientLists = () => {
-    const companyRecipients = [];
-    if (companyDomains)
-      companyDomains.forEach((domain, index) => {
-        // Find all recipients that belong to company domains
-        const matchingRecipients = recipientList.filter(
-          (recipient: IndividualRecipient) => recipient.email.includes(domain),
-        );
-
-        companyRecipients.push({
-          id: index + 1,
-          domainName: domain,
-          recipients: matchingRecipients,
-        });
-      });
-
-    const filteredIndividualRecipients = recipientList.filter(
-      (recipient: { email: string | string[] }) =>
-        // Group recipients that did not have a company domain
-        !companyDomains?.some((domain) => recipient.email.includes(domain)),
-    );
-
-    setIndividualRecipients(filteredIndividualRecipients.flat());
-    setCompanyRecipients(companyRecipients);
-  };
-
   useEffect(() => {
+    const setGroupedRecipientLists = () => {
+      const companyRecipients = [];
+      if (companyDomains)
+        companyDomains.forEach((domain, index) => {
+          // Find all recipients that belong to company domains
+          const matchingRecipients = recipientList.filter(
+            (recipient: IndividualRecipient) =>
+              recipient.email.includes(domain),
+          );
+
+          companyRecipients.push({
+            id: index + 1,
+            domainName: domain,
+            recipients: matchingRecipients,
+          });
+        });
+
+      const filteredIndividualRecipients = recipientList.filter(
+        (recipient: { email: string | string[] }) =>
+          // Group recipients that did not have a company domain
+          !companyDomains?.some((domain) => recipient.email.includes(domain)),
+      );
+
+      setIndividualRecipients(filteredIndividualRecipients.flat());
+      setCompanyRecipients(companyRecipients);
+    };
+
     setGroupedRecipientLists();
   }, [companyDomains, recipientList]);
 
-  const extractCompanyDomains = () => {
-    // Gather all possible domains
-    const fullDomainList = recipientList.map(
-      (recipient) =>
-        // Regex to find the domain and subdomain after an '@'
-        recipient.email.match(/(?<=@)[^.]+(?=\.).*/)[0],
-    );
-
-    // Eliminate domains where there wasn't two or more
-    const filteredDomains = fullDomainList.filter((domain, index) =>
-      fullDomainList.includes(domain, index + 1),
-    );
-
-    // Remove repeated domains and return
-    return Array.from(new Set(filteredDomains));
-  };
-
   useEffect(() => {
+    const extractCompanyDomains = () => {
+      // Gather all possible domains
+      const fullDomainList = recipientList.map(
+        (recipient) =>
+          // Regex to find the domain and subdomain after an '@'
+          recipient.email.match(/(?<=@)[^.]+(?=\.).*/)[0],
+      );
+
+      // Eliminate domains where there wasn't two or more
+      const filteredDomains = fullDomainList.filter((domain, index) =>
+        fullDomainList.includes(domain, index + 1),
+      );
+
+      // Remove repeated domains and return
+      return Array.from(new Set(filteredDomains));
+    };
+
     const filteredDomains = extractCompanyDomains();
     setCompanyDomains(filteredDomains);
   }, [recipientList]);

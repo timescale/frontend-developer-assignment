@@ -8,7 +8,7 @@ interface CardWithLabelProps {
 
 const CardWithLabel = ({ children, label }: CardWithLabelProps) => {
   return (
-    <Card sx={{ minWidth: "800px", minHeight: "400px", padding: "2rem" }}>
+    <Card sx={{ minWidth: "600px", minHeight: "400px", padding: "2rem" }}>
       <Box
         sx={{
           border: "1px solid black",
